@@ -401,13 +401,7 @@ export default function AdminDashboard({ isAdminLoggedIn, onLoginSuccess, onLogo
                 <Calendar className="metric-icon" size={24} />
               </div>
 
-              <div className="metric-card glass">
-                <div className="metric-info">
-                  <h4>Project Clicks</h4>
-                  <p>{metrics.totalProjectClicks}</p>
-                </div>
-                <FolderGit className="metric-icon" size={24} />
-              </div>
+
 
               <div className="metric-card glass">
                 <div className="metric-info">
@@ -479,7 +473,6 @@ export default function AdminDashboard({ isAdminLoggedIn, onLoginSuccess, onLogo
                   <tr>
                     <th>Title</th>
                     <th>Featured</th>
-                    <th>Clicks</th>
                     <th>Technologies</th>
                     <th>Actions</th>
                   </tr>
@@ -489,7 +482,6 @@ export default function AdminDashboard({ isAdminLoggedIn, onLoginSuccess, onLogo
                     <tr key={p.id}>
                       <td style={{ fontWeight: 600 }}>{p.title}</td>
                       <td>{p.featured ? 'Yes' : 'No'}</td>
-                      <td>{p.clicks}</td>
                       <td style={{ maxWidth: '200px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{p.technologies}</td>
                       <td>
                         <div style={{ display: 'flex', gap: '8px' }}>
