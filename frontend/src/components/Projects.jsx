@@ -55,7 +55,7 @@ export default function Projects({ projects = [], setView, viewMode = 'featured'
         {/* Horizontal Scroll Container */}
         <div className="featured-scroll-container">
           {filteredProjects.map((project, index) => (
-            <div key={project.id || index} style={{ minWidth: '350px', flexShrink: 0 }}>
+            <div key={project.id || index} style={{ width: '320px', flexShrink: 0 }}>
               <ProjectCard 
                 project={project} 
                 onTagClick={null} /* disable filtering trigger on home page */
@@ -68,7 +68,7 @@ export default function Projects({ projects = [], setView, viewMode = 'featured'
             className="project-card glass glass-hover more-projects-card" 
             onClick={() => window.location.hash = '#/projects'}
             style={{
-              minWidth: '300px',
+              width: '320px',
               flexShrink: 0,
               display: 'flex',
               flexDirection: 'column',
