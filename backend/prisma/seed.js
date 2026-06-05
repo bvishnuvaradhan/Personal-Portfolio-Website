@@ -161,6 +161,16 @@ async function main() {
       imageUrl: '/temple.jpg',
       featured: false,
       clicks: 65
+    },
+    {
+      title: 'CivicWatch – Smart City Grievance Redressal System',
+      description: 'A community issue reporting and resolution platform enabling citizens to report local civic problems (potholes, garbage, water issues) with location and evidence, while administrators and workers verify and resolve tasks through a structured workflow.',
+      technologies: 'Java, Spring Boot, Spring Security, React, TypeScript, PostgreSQL, PostGIS, Tailwind CSS',
+      githubLink: 'https://github.com/bvishnuvaradhan/CivicWatch',
+      liveLink: 'https://civic-watch-xi.vercel.app/',
+      imageUrl: '/civicwatch.png',
+      featured: true,
+      clicks: 105
     }
   ];
 
