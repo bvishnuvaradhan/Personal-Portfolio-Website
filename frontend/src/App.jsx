@@ -26,6 +26,7 @@ export default function App() {
   const [education, setEducation] = useState([]);
   const [certifications, setCertifications] = useState([]);
   const [achievements, setAchievements] = useState([]);
+  const [posts, setPosts] = useState([]);
   // Profile Data State
   const [profile, setProfile] = useState({
     name: 'Your Name',
