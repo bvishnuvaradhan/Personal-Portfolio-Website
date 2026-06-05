@@ -33,8 +33,15 @@ const routes = {
 };
 
 Object.entries(routes).forEach(([name, routerModule]) => {
-  console.log(`[Router Load] ${name}: type=${typeof routerModule}`);
-  app.use(`/api/${name}`, routerModule);
+  let routeHandler = routerModule;
+  console.log(`[Router Load] ${name}: type=${typeof routerModule}, keys=${typeof routerModule === 'object' ? Object.keys(routerModule).join(',') : ''}`);
+  
+  if (typeof routerModule === 'object' && routerModule.default) {
+    routeHandler = routerModule.default;
+    console.log(`  -> Unwrapped default export for ${name}`);
+  }
+  
+  app.use(`/api/${name}`, routeHandler);
 });
 
 // Default API route test
