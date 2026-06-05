@@ -17,21 +17,12 @@ export default function Certifications({ certifications = [], achievements = [] 
             <Award size={24} /> Certifications
           </h2>
           
-          <motion.div 
-            className="certs-list"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={{
-              visible: { transition: { staggerChildren: 0.1 } }
-            }}
-          >
+          <div className="certs-list">
             {certifications.length > 0 ? (
               certifications.map((cert) => (
-                <motion.div 
+                <div 
                   key={cert.id} 
                   className="cert-card glass glass-hover"
-                  variants={itemVariants}
                 >
                   <div className="cert-card-header">
                     <div>
@@ -50,12 +41,12 @@ export default function Certifications({ certifications = [], achievements = [] 
                       </a>
                     )}
                   </div>
-                </motion.div>
+                </div>
               ))
             ) : (
               <p style={{ color: 'var(--text-secondary)' }}>No certifications posted yet.</p>
             )}
-          </motion.div>
+          </div>
         </div>
 
         {/* Right Column: Achievements */}
@@ -64,21 +55,12 @@ export default function Certifications({ certifications = [], achievements = [] 
             <Trophy size={24} /> Achievements
           </h2>
           
-          <motion.div 
-            className="achievements-list"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={{
-              visible: { transition: { staggerChildren: 0.1 } }
-            }}
-          >
+          <div className="achievements-list">
             {achievements.length > 0 ? (
               achievements.map((ach) => (
-                <motion.div 
+                <div 
                   key={ach.id} 
                   className="achievement-card glass glass-hover"
-                  variants={itemVariants}
                 >
                   <div className="achievement-card-header">
                     <div>
@@ -97,12 +79,12 @@ export default function Certifications({ certifications = [], achievements = [] 
                       </a>
                     )}
                   </div>
-                </motion.div>
+                </div>
               ))
             ) : (
               <p style={{ color: 'var(--text-secondary)' }}>No achievements posted yet.</p>
             )}
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

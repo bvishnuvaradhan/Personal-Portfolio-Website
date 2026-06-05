@@ -40,16 +40,10 @@ export default function Timeline({ experiences = [], education = [] }) {
             <Briefcase size={24} /> Experience
           </h3>
 
-          <motion.div 
-            className="timeline-wrapper"
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-100px' }}
-          >
+          <div className="timeline-wrapper">
             {experiences.length > 0 ? (
               experiences.map((exp, index) => (
-                <motion.div key={exp.id || index} className="timeline-item" variants={itemVariants}>
+                <div key={exp.id || index} className="timeline-item">
                   <div className="timeline-dot"></div>
                   <div className="timeline-date">
                     <Calendar size={12} style={{ marginRight: '5px', display: 'inline' }} />
@@ -73,12 +67,12 @@ export default function Timeline({ experiences = [], education = [] }) {
                       <p className="timeline-desc">{exp.description}</p>
                     )}
                   </div>
-                </motion.div>
+                </div>
               ))
             ) : (
               <p style={{ color: 'var(--text-secondary)' }}>No experience items posted yet.</p>
             )}
-          </motion.div>
+          </div>
         </div>
 
         {/* Education Column */}
@@ -87,16 +81,10 @@ export default function Timeline({ experiences = [], education = [] }) {
             <GraduationCap size={24} /> Education
           </h3>
 
-          <motion.div 
-            className="timeline-wrapper"
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-100px' }}
-          >
+          <div className="timeline-wrapper">
             {education.length > 0 ? (
               education.map((edu, index) => (
-                <motion.div key={edu.id || index} className="timeline-item" variants={itemVariants}>
+                <div key={edu.id || index} className="timeline-item">
                   <div className="timeline-dot"></div>
                   <div className="timeline-date">
                     <Calendar size={12} style={{ marginRight: '5px', display: 'inline' }} />
@@ -107,12 +95,12 @@ export default function Timeline({ experiences = [], education = [] }) {
                     <div className="timeline-subtitle">{edu.institution}</div>
                     <p className="timeline-desc">{edu.description}</p>
                   </div>
-                </motion.div>
+                </div>
               ))
             ) : (
               <p style={{ color: 'var(--text-secondary)' }}>No education history posted yet.</p>
             )}
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>
