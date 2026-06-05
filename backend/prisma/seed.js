@@ -141,6 +141,16 @@ async function main() {
       imageUrl: '/hyfd.png',
       featured: true,
       clicks: 110
+    },
+    {
+      title: 'Evenza – Advanced Event Management System',
+      description: 'A powerful event management system designed to streamline organizing, hosting, and tracking events. Features multi-role access (Owner, Admin, User), smart dashboards, event analytics, and hybrid UI rendering.',
+      technologies: 'React, Node.js, Express, MongoDB, REST APIs, HTML & CSS',
+      githubLink: 'https://github.com/Vishnuvaradhan142/Evenza',
+      liveLink: 'https://github.com/Vishnuvaradhan142/Evenza-Frontend',
+      imageUrl: '/evenza.png',
+      featured: true,
+      clicks: 95
     }
   ];
 
