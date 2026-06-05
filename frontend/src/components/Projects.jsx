@@ -10,7 +10,7 @@ export default function Projects({ projects = [], setView, viewMode = 'featured'
 
   const displayableProjects = viewMode === 'featured' 
     ? projects.filter(p => p.featured)
-    : projects.filter(p => !p.featured);
+    : projects;
 
   // Extract all unique tags/technologies from displayable projects
   const allTags = ['All', ...new Set(
