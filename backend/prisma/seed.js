@@ -108,7 +108,7 @@ async function main() {
       technologies: 'Python, FastAPI, MongoDB, LLM APIs, NLP',
       githubLink: 'https://github.com/bvishnuvaradhan/Alethenia-Gate',
       liveLink: 'https://aletheia-gate-teal-panda.reflex.run',
-      imageUrl: 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=800&q=80',
+      imageUrl: '/aletheiagate.png',
       featured: true,
       clicks: 95
     },
