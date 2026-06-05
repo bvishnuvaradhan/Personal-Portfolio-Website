@@ -137,12 +137,22 @@ async function main() {
           link: ''
         }
       ],
-      blog: {
-        title: 'Building Scalable Web Applications',
-        content: 'Scaling web applications requires an optimization of queries, indexes, and network request logic. In this post we explore best practices.',
-        slug: 'building-scalable-web-applications',
-        published: true
-      }
+      blog: [
+        {
+          title: 'Building Scalable Web Applications',
+          content: 'Scaling web applications requires an optimization of queries, indexes, and network request logic. In this post we explore best practices.',
+          slug: 'building-scalable-web-applications',
+          published: true,
+          link: null
+        },
+        {
+          title: 'Building HyFD: How We Used MongoDB to Store and Analyse Production ML Failure Logs',
+          content: 'A comprehensive writeup of how we designed and implemented HyFD (Hybrid Failure Detector) to store and analyze production machine learning pipeline failure logs using MongoDB, improving diagnostic analysis and log monitoring.',
+          slug: 'building-hyfd-how-we-used-mongodb-to-store-and-analyse-production-ml-failure-logs-dl2',
+          published: true,
+          link: 'https://dev.to/sourab_reddy_/building-hyfd-how-we-used-mongodb-to-store-and-analyse-production-ml-failure-logs-dl2'
+        }
+      ]
     };
   }
 
@@ -196,19 +206,20 @@ async function main() {
   }
   console.log(`Seeded ${data.achievements.length} achievements.`);
 
-  // 9. Create Blog Post
-  const blogPost = data.blog;
-  if (blogPost) {
+  // 9. Create Blog Posts
+  const blogPosts = Array.isArray(data.blog) ? data.blog : [data.blog].filter(Boolean);
+  for (const post of blogPosts) {
     await prisma.post.create({
       data: {
-        title: blogPost.title,
-        content: blogPost.content,
-        slug: blogPost.slug,
-        published: blogPost.published
+        title: post.title,
+        content: post.content,
+        slug: post.slug,
+        published: post.published,
+        link: post.link || null
       }
     });
-    console.log('Seeded blog post.');
   }
+  console.log(`Seeded ${blogPosts.length} blog posts.`);
 
   console.log('Database seeding completed successfully!');
 }

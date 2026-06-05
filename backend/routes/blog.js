@@ -9,7 +9,8 @@ const prisma = new PrismaClient();
 const postSchema = z.object({
   title: z.string().min(1, 'Title is required'),
   content: z.string().min(1, 'Content is required'),
-  published: z.boolean().default(false)
+  published: z.boolean().default(false),
+  link: z.string().optional().nullable()
 });
 
 // Helper to convert title to a url slug
@@ -88,7 +89,7 @@ router.post('/', auth, async (req, res) => {
       return res.status(400).json({ errors: validation.error.format() });
     }
 
-    const { title, content, published } = validation.data;
+    const { title, content, published, link } = validation.data;
 
     let slug = slugify(title);
     
@@ -99,7 +100,7 @@ router.post('/', auth, async (req, res) => {
     }
 
     const newPost = await prisma.post.create({
-      data: { title, content, slug, published }
+      data: { title, content, slug, published, link: link || null }
     });
 
     res.status(201).json(newPost);
@@ -120,7 +121,7 @@ router.put('/:id', auth, async (req, res) => {
       return res.status(400).json({ errors: validation.error.format() });
     }
 
-    const { title, content, published } = validation.data;
+    const { title, content, published, link } = validation.data;
 
     const post = await prisma.post.findUnique({ where: { id } });
     if (!post) {
@@ -139,7 +140,7 @@ router.put('/:id', auth, async (req, res) => {
 
     const updated = await prisma.post.update({
       where: { id },
-      data: { title, content, slug, published }
+      data: { title, content, slug, published, link: link || null }
     });
 
     res.json(updated);

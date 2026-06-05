@@ -19,6 +19,14 @@ export default function Blog({ posts = [] }) {
     setActivePost(null);
   };
 
+  const onReadArticle = (post) => {
+    if (post.link) {
+      window.open(post.link, '_blank', 'noopener,noreferrer');
+    } else {
+      handlePostClick(post);
+    }
+  };
+
   return (
     <section id="blog">
       <AnimatePresence mode="wait">
@@ -82,7 +90,7 @@ export default function Blog({ posts = [] }) {
                       <Calendar size={12} style={{ display: 'inline', marginRight: '5px' }} />
                       {formatDate(post.createdAt)}
                     </span>
-                    <h3 className="blog-title" onClick={() => handlePostClick(post)}>
+                    <h3 className="blog-title" onClick={() => onReadArticle(post)}>
                       {post.title}
                     </h3>
                     <p className="blog-excerpt">
@@ -93,7 +101,7 @@ export default function Blog({ posts = [] }) {
                     <button 
                       className="btn btn-secondary" 
                       style={{ padding: '8px 16px', fontSize: '0.85rem', width: 'fit-content', display: 'flex', gap: '5px' }}
-                      onClick={() => handlePostClick(post)}
+                      onClick={() => onReadArticle(post)}
                     >
                       <BookOpen size={14} /> Read Article
                     </button>

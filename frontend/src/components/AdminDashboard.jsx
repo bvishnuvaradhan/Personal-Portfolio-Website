@@ -1221,6 +1221,10 @@ export default function AdminDashboard({ isAdminLoggedIn, onLoginSuccess, onLogo
                     <input type="text" name="title" className="form-input" value={formData.title || ''} onChange={handleFormInputChange} required />
                   </div>
                   <div className="form-group">
+                    <label className="form-label">Article Link URL (Optional - Redirects directly when clicked)</label>
+                    <input type="url" name="link" className="form-input" placeholder="https://example.com/blog" value={formData.link || ''} onChange={handleFormInputChange} />
+                  </div>
+                  <div className="form-group">
                     <label className="form-label">Markdown / Text Content</label>
                     <textarea name="content" className="form-textarea" style={{ minHeight: '250px' }} value={formData.content || ''} onChange={handleFormInputChange} required></textarea>
                   </div>
