@@ -1,0 +1,28 @@
+# Node dependencies
+node_modules/
+**/node_modules/
+
+# Production build artifacts
+dist/
+**/dist/
+build/
+**/build/
+
+# Local databases
+backend/prisma/dev.db
+backend/prisma/dev.db-journal
+
+# Secrets & Environment configs
+.env
+backend/.env
+frontend/.env
+*.env.local
+
+# Uploads and temporary files
+backend/uploads/
+.DS_Store
+Thumbs.db
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.eslintcache

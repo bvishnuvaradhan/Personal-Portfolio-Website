@@ -1,0 +1,90 @@
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id       Int    @id @default(autoincrement())
+  username String @unique
+  password String
+}
+
+model Project {
+  id           Int      @id @default(autoincrement())
+  title        String
+  description  String
+  technologies String   // Comma-separated list of technologies
+  githubLink   String?
+  liveLink     String?
+  imageUrl     String
+  featured     Boolean  @default(false)
+  clicks       Int      @default(0)
+  createdAt    DateTime @default(now())
+}
+
+model Skill {
+  id          Int    @id @default(autoincrement())
+  name        String
+  category    String // e.g., "Frontend", "Backend", "AI/ML", "Programming Languages"
+  proficiency Int    // 0-100 percentage
+}
+
+model Experience {
+  id          Int       @id @default(autoincrement())
+  company     String
+  role        String
+  startDate   DateTime
+  endDate     DateTime?
+  description String
+}
+
+model Education {
+  id          Int      @id @default(autoincrement())
+  degree      String
+  institution String
+  period      String
+  description String
+}
+
+model Certification {
+  id     Int     @id @default(autoincrement())
+  title  String
+  issuer String
+  link   String
+}
+
+model Achievement {
+  id          Int     @id @default(autoincrement())
+  title       String
+  description String
+  link        String?
+}
+
+model Message {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String
+  subject   String
+  content   String
+  status    String   @default("New") // "New", "Read", "Replied"
+  createdAt DateTime @default(now())
+}
+
+model Post {
+  id        Int      @id @default(autoincrement())
+  title     String
+  content   String
+  slug      String   @unique
+  published Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
+model Analytics {
+  id    Int    @id @default(autoincrement())
+  key   String @unique // "visitors", "resume_downloads"
+  count Int    @default(0)
+}

@@ -1,0 +1,66 @@
+BOGA VISHNUVARADHAN
+Email: vishnuvaradhan.boga@gmail.com | Phone: +91 8121812509
+Location: Hyderabad, Telangana, India
+GitHub: https://github.com/bvishnuvaradhan
+LinkedIn: https://linkedin.com/in/bvishnuvaradhan
+
+CAREER OBJECTIVE:
+Computer Science undergraduate with strong foundations in data structures, systems, and backend development. Experienced in building real-time, AI-driven, and distributed applications. Seeking Summer 2026 internship in software engineering or quantitative technology roles.
+
+EDUCATION:
+- Koneru Lakshmaiah Education Foundation (KL University), Hyderabad
+  Bachelor of Technology (B.Tech) - Computer Science and Engineering | July 2024 - May 2028 | CGPA: 9.48
+- Sri Chaitanya Junior College
+  MPC Intermediate | June 2022 - March 2024 | Percentage: 81.4%
+- Sri Chaitanya School
+  SSC School | June 2021 - May 2022 | CGPA: 9.3
+
+TECHNICAL SKILLS:
+- Programming Languages: Python, Java, C
+- Backend & Systems: FastAPI, Node.js, REST APIs, WebSockets
+- Frontend: React, JavaScript, HTML, CSS
+- Databases: MongoDB, MySQL
+- Tools & Platforms: Git, GitHub, Linux, VS Code
+- Core Concepts: Data Structures & Algorithms, OOP, Operating Systems, DBMS, System Design Basics
+
+PROJECTS:
+1. CipherNexus - Multi-Agent Cybersecurity SOC Simulation Platform
+   - Developed real-time SOC simulation system with multi-agent architecture.
+   - Designed event-driven pipeline for detection -> response -> forensics.
+   - Implemented WebSocket-based live dashboard with ML-based anomaly detection.
+   - Tech: Python (FastAPI), MongoDB, React, WebSockets, Machine Learning
+   - URL: https://cipher-nexus-zeta.vercel.app
+
+2. Aletheia Gate - LLM Hallucination Detection & Verification System
+   - Developed verification pipeline for LLM outputs using multi-model consensus and web evidence.
+   - Designed trust scoring system combining AI agreement, semantic checks, and fact penalties.
+   - Implemented audit layer with persistent, explainable outputs.
+   - Tech: Python, FastAPI, MongoDB, LLM APIs, NLP
+   - URL: https://aletheia-gate-teal-panda.reflex.run
+
+3. MongoArchitect - AI-Based MongoDB Schema Design System
+   - Engineered AI-driven MongoDB schema design system with versioned schema evolution.
+   - Implemented analysis modules for query performance, access patterns, and cost estimation.
+   - Designed full-stack SaaS architecture with FastAPI, MongoDB, and LLM integration.
+   - Tech: Python (FastAPI), MongoDB, React, LLM APIs
+   - URL: https://mongoarchitect-ai.vercel.app
+
+4. Automated Wild Animal Intrusion Detection System (IoT)
+   - Developed IoT-based intrusion detection system for real-time monitoring of restricted areas.
+   - Implemented sensor-based detection logic and alert mechanisms for real-time response.
+   - Tech: IoT Sensors, Embedded Systems
+   - Award: INNOV-A-TECH 2025 - 3rd Prize
+
+INTERNSHIP / TRAINING:
+- ServiceNow Virtual Internship
+  Learned workflow automation, service management, and system administration concepts. Gained exposure to Agentic AI, flows, and automated testing frameworks (ATF).
+- Google Cloud Generative AI Virtual Internship (Cohort 12)
+  Learned Generative AI fundamentals, prompt engineering, and cloud-based AI workflows.
+- Google AI-ML Virtual Internship (Cohort 13)
+  Gained exposure to machine learning fundamentals, model workflows, data preprocessing, and model evaluation techniques.
+
+ACHIEVEMENTS & CERTIFICATIONS:
+- MongoDB Certified Associate Developer - MongoDB
+- Advanced Automation Professional - Automation Anywhere
+- 3rd Prize - INNOV-A-TECH 2025 Hackathon
+- Finalist in multiple college-level hackathons
