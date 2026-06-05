@@ -12,20 +12,26 @@ export default function Navbar({
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const handleNavClick = (sectionId) => {
-    setView('home');
-    setMobileMenuOpen(false);
-    setTimeout(() => {
+    if (window.location.hash === `#${sectionId}`) {
       const element = document.getElementById(sectionId);
       if (element) {
         element.scrollIntoView({ behavior: 'smooth' });
       }
-    }, 100);
+    } else {
+      window.location.hash = `#${sectionId}`;
+    }
+    setMobileMenuOpen(false);
   };
 
   const navigateTo = (viewName) => {
-    setView(viewName);
+    if (viewName === 'home') {
+      window.location.hash = '#/';
+    } else if (viewName === 'projects') {
+      window.location.hash = '#/projects';
+    } else if (viewName === 'admin') {
+      window.location.hash = '#/admin';
+    }
     setMobileMenuOpen(false);
-    window.scrollTo(0, 0);
   };
 
   return (

@@ -610,20 +610,27 @@ section {
 }
 
 .project-image-wrapper {
-  height: 200px;
+  height: 220px;
   overflow: hidden;
   position: relative;
+  background-color: var(--bg-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid var(--border-glass);
 }
 
 .project-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
   transition: var(--transition-smooth);
 }
 
 .project-card:hover .project-image {
-  transform: scale(1.08);
+  transform: scale(1.05);
 }
 
 .project-featured-badge {

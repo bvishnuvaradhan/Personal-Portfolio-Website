@@ -157,10 +157,42 @@ export default function App() {
     fetchCodeforcesStats();
   }, []);
 
+  // Listen to hash changes for routing
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash;
+      if (hash === '#/projects') {
+        setView('projects');
+        window.scrollTo(0, 0);
+      } else if (hash === '#/admin') {
+        setView('admin');
+        window.scrollTo(0, 0);
+      } else {
+        setView('home');
+        // Handle scrolling if hash is a specific section (e.g. #about, #skills, #experience, #projects, #blog, #contact)
+        if (hash && !hash.startsWith('#/')) {
+          const sectionId = hash.substring(1);
+          setTimeout(() => {
+            const element = document.getElementById(sectionId);
+            if (element) {
+              element.scrollIntoView({ behavior: 'smooth' });
+            }
+          }, 100);
+        }
+      }
+    };
+
+    // Run on mount
+    handleHashChange();
+
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
+
   const handleLogout = () => {
     localStorage.removeItem('token');
     setIsAdminLoggedIn(false);
-    setView('home');
+    window.location.hash = '#/';
   };
 
   return (

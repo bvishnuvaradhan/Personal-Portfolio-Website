@@ -8,30 +8,22 @@ export default function Projects({ projects = [], setView, viewMode = 'featured'
   const [selectedTag, setSelectedTag] = useState('All');
   const [filteredProjects, setFilteredProjects] = useState([]);
 
-  // Extract all unique tags/technologies from projects
+  const displayableProjects = viewMode === 'featured' 
+    ? projects.filter(p => p.featured)
+    : projects.filter(p => !p.featured);
+
+  // Extract all unique tags/technologies from displayable projects
   const allTags = ['All', ...new Set(
-    projects
+    displayableProjects
       .flatMap(p => p.technologies ? p.technologies.split(',').map(t => t.trim()) : [])
       .filter(t => t.length > 0)
   )];
 
-  // Order of featured projects keywords
-  const orderKeywords = ["CivicWatch", "HyFD", "MongoArchitect", "Aletheia Gate", "CipherNexus"];
-
   useEffect(() => {
     if (viewMode === 'featured') {
-      // Find and order the 5 specific projects
-      const ordered = [];
-      orderKeywords.forEach(keyword => {
-        const matched = projects.find(p => p.title.toLowerCase().includes(keyword.toLowerCase()));
-        if (matched) {
-          ordered.push(matched);
-        }
-      });
-      // Fallback to first 5 projects if none match keyword (safety check)
-      setFilteredProjects(ordered.length > 0 ? ordered : projects.slice(0, 5));
+      setFilteredProjects(displayableProjects);
     } else {
-      let result = [...projects];
+      let result = [...displayableProjects];
 
       // Filter by tag
       if (selectedTag !== 'All') {
@@ -74,7 +66,7 @@ export default function Projects({ projects = [], setView, viewMode = 'featured'
           {/* View More Card */}
           <div 
             className="project-card glass glass-hover more-projects-card" 
-            onClick={() => setView && setView('projects')}
+            onClick={() => window.location.hash = '#/projects'}
             style={{
               minWidth: '300px',
               flexShrink: 0,

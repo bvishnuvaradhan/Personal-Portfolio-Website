@@ -119,7 +119,7 @@ async function main() {
       githubLink: 'https://github.com/bvishnuvaradhan/mongoarchitect-ai',
       liveLink: 'https://mongoarchitect-ai.vercel.app',
       imageUrl: '/mongoarchitect.png',
-      featured: true,
+      featured: false,
       clicks: 88
     },
     {
@@ -149,7 +149,7 @@ async function main() {
       githubLink: 'https://github.com/Vishnuvaradhan142/Evenza',
       liveLink: 'https://github.com/Vishnuvaradhan142/Evenza-Frontend',
       imageUrl: '/evenza.png',
-      featured: true,
+      featured: false,
       clicks: 95
     },
     {
