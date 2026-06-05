@@ -6,10 +6,14 @@ const fs = require('fs');
 const cloudinary = require('cloudinary').v2;
 const auth = require('../middleware/auth');
 
-// Make sure local uploads directory exists
-const uploadDir = path.join(__dirname, '../uploads');
-if (!fs.existsSync(uploadDir)) {
-  fs.mkdirSync(uploadDir, { recursive: true });
+// Determine upload directory: Vercel serverless has a read-only filesystem except for /tmp
+const uploadDir = process.env.VERCEL ? '/tmp' : path.join(__dirname, '../uploads');
+try {
+  if (!fs.existsSync(uploadDir)) {
+    fs.mkdirSync(uploadDir, { recursive: true });
+  }
+} catch (err) {
+  console.warn('Warning: Could not create upload directory, falling back to OS temp directory:', err.message);
 }
 
 // Multer Local Disk Storage configuration
