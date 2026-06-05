@@ -15,20 +15,27 @@ app.use(express.json());
 // Serve uploaded images statically
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
-// Routes mapping
-app.use('/api/auth', require('./routes/auth'));
-app.use('/api/projects', require('./routes/projects'));
-app.use('/api/skills', require('./routes/skills'));
-app.use('/api/experience', require('./routes/experience'));
-app.use('/api/education', require('./routes/education'));
-app.use('/api/certifications', require('./routes/certifications'));
-app.use('/api/achievements', require('./routes/achievements'));
-app.use('/api/messages', require('./routes/messages'));
-app.use('/api/blog', require('./routes/blog'));
-app.use('/api/analytics', require('./routes/analytics'));
-app.use('/api/uploads', require('./routes/uploads'));
-app.use('/api/leetcode', require('./routes/leetcode'));
-app.use('/api/profile', require('./routes/profile'));
+// Load routers explicitly with logging to debug ESM/bundling issues on Vercel
+const routes = {
+  auth: require('./routes/auth'),
+  projects: require('./routes/projects'),
+  skills: require('./routes/skills'),
+  experience: require('./routes/experience'),
+  education: require('./routes/education'),
+  certifications: require('./routes/certifications'),
+  achievements: require('./routes/achievements'),
+  messages: require('./routes/messages'),
+  blog: require('./routes/blog'),
+  analytics: require('./routes/analytics'),
+  uploads: require('./routes/uploads'),
+  leetcode: require('./routes/leetcode'),
+  profile: require('./routes/profile')
+};
+
+Object.entries(routes).forEach(([name, routerModule]) => {
+  console.log(`[Router Load] ${name}: type=${typeof routerModule}`);
+  app.use(`/api/${name}`, routerModule);
+});
 
 // Default API route test
 app.get('/api', (req, res) => {
