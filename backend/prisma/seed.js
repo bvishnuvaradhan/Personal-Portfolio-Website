@@ -151,6 +151,16 @@ async function main() {
       imageUrl: '/evenza.png',
       featured: true,
       clicks: 95
+    },
+    {
+      title: 'Echoes of the Temple – Static Web Puzzle Game',
+      description: 'A single-file static web game featuring a multi-room maze and puzzle experience. Implemented interactive puzzles (levers, keys, collectibles), brain-teasing mechanisms, and dynamic real-time game rendering.',
+      technologies: 'HTML, CSS, JavaScript, Web Games',
+      githubLink: 'https://github.com/Vishnuvaradhan142/Echoes-of-the-Temple',
+      liveLink: 'https://echoes-of-the-temple.onrender.com/',
+      imageUrl: '/temple.jpg',
+      featured: false,
+      clicks: 65
     }
   ];
 
