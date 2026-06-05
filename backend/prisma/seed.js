@@ -246,7 +246,7 @@ async function main() {
     {
       title: 'Advanced Automation Professional',
       issuer: 'Automation Anywhere',
-      link: 'https://credentials.automationanywhere.com'
+      link: 'https://certificates.automationanywhere.com/c8e5d28a-7608-4285-9cb9-8107ededfe71'
     }
   ];
 
