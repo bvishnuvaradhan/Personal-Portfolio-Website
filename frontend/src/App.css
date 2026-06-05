@@ -979,6 +979,26 @@ section {
   justify-content: space-between;
 }
 
+.clickable-metric:hover {
+  border-color: var(--accent-primary);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-glass), var(--shadow-glow);
+}
+
+.metric-value-special {
+  font-size: 1.25rem !important;
+  font-weight: 700;
+  color: var(--accent-primary);
+  margin-top: 5px;
+}
+
+.metric-note {
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+  display: block;
+  margin-top: 4px;
+}
+
 .metric-info h4 {
   font-size: 0.9rem;
   color: var(--text-secondary);

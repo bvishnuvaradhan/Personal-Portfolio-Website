@@ -410,10 +410,15 @@ export default function AdminDashboard({ isAdminLoggedIn, onLoginSuccess, onLogo
             <h2 style={{ fontSize: '1.8rem' }} className="gradient-text">Portfolio Analytics</h2>
             
             <div className="admin-metrics-grid">
-              <div className="metric-card glass">
+              <div 
+                className="metric-card glass clickable-metric" 
+                onClick={() => window.open('https://vercel.com/bvishnuvaradhan/personal-portfolio-website/analytics', '_blank', 'noopener,noreferrer')}
+                title="Click to view live Vercel Web Analytics"
+              >
                 <div className="metric-info">
                   <h4>Total Visitors</h4>
-                  <p>{metrics.visitors}</p>
+                  <p className="metric-value-special">View on Vercel ↗</p>
+                  <span className="metric-note">Live Vercel Web Analytics</span>
                 </div>
                 <BarChart3 className="metric-icon" size={24} />
               </div>
