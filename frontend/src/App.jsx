@@ -85,14 +85,14 @@ export default function App() {
   // Fetch GitHub Stats for both accounts and combine them
   const fetchGithubStats = async () => {
     try {
-      const user1 = 'bvishnuvaradhan';
-      const user2 = 'Vishnuvaradhan142';
+      const user1 = import.meta.env.VITE_GITHUB_PRIMARY || 'github_user_1';
+      const user2 = import.meta.env.VITE_GITHUB_SECONDARY || '';
 
       let repos = 0;
       let stars = 0;
       let followers = 0;
 
-      // Account 1 (bvishnuvaradhan)
+      // Account 1 (Primary)
       const res1 = await fetch(`https://api.github.com/users/${user1}`);
       if (res1.ok) {
         const data1 = await res1.json();
@@ -106,17 +106,19 @@ export default function App() {
         }
       }
 
-      // Account 2 (Vishnuvaradhan142)
-      const res2 = await fetch(`https://api.github.com/users/${user2}`);
-      if (res2.ok) {
-        const data2 = await res2.json();
-        repos += data2.public_repos || 0;
-        followers += data2.followers || 0;
-        
-        const reposRes2 = await fetch(`https://api.github.com/users/${user2}/repos?per_page=100`);
-        if (reposRes2.ok) {
-          const reposData2 = await reposRes2.json();
-          stars += reposData2.reduce((sum, repo) => sum + repo.stargazers_count, 0);
+      // Account 2 (Secondary, if configured)
+      if (user2) {
+        const res2 = await fetch(`https://api.github.com/users/${user2}`);
+        if (res2.ok) {
+          const data2 = await res2.json();
+          repos += data2.public_repos || 0;
+          followers += data2.followers || 0;
+          
+          const reposRes2 = await fetch(`https://api.github.com/users/${user2}/repos?per_page=100`);
+          if (reposRes2.ok) {
+            const reposData2 = await reposRes2.json();
+            stars += reposData2.reduce((sum, repo) => sum + repo.stargazers_count, 0);
+          }
         }
       }
 
@@ -128,7 +130,6 @@ export default function App() {
       }
     } catch (err) {
       console.error('GitHub stats fetch error, using mockup data:', err);
-      // set mockup data for demo purposes
       setGithubStats({ repos: 22, stars: 10, followers: 32 });
     }
   };
@@ -136,8 +137,9 @@ export default function App() {
   // Fetch LeetCode Stats via backend GraphQL Proxy
   const fetchLeetcodeStats = async () => {
     try {
+      const handle = import.meta.env.VITE_LEETCODE || 'leetcode_handle';
       // Query our backend proxy with user's actual username
-      const stats = await api.leetcode.getStats('eqqPSQRrkF');
+      const stats = await api.leetcode.getStats(handle);
       setLeetcodeStats(stats);
       setLeetcodeError(false);
     } catch (err) {
@@ -149,7 +151,8 @@ export default function App() {
   // Fetch Codeforces Stats
   const fetchCodeforcesStats = async () => {
     try {
-      const res = await fetch('https://codeforces.com/api/user.info?handles=bvishnu_2509');
+      const handle = import.meta.env.VITE_CODEFORCES || 'codeforces_handle';
+      const res = await fetch(`https://codeforces.com/api/user.info?handles=${handle}`);
       if (res.ok) {
         const data = await res.json();
         if (data.status === 'OK' && data.result.length > 0) {
@@ -285,13 +288,19 @@ export default function App() {
                     <h3 style={{ fontSize: '1.25rem' }}>GitHub</h3>
                   </div>
                   <div style={{ display: 'flex', gap: '8px' }}>
-                    <a href="https://github.com/bvishnuvaradhan" target="_blank" rel="noopener noreferrer" style={{ fontSize: '0.85rem', color: 'var(--accent-primary)', fontWeight: 600 }} title="Primary GitHub">
-                      bvishnu
-                    </a>
-                    <span style={{ color: 'var(--text-secondary)' }}>|</span>
-                    <a href="https://github.com/Vishnuvaradhan142" target="_blank" rel="noopener noreferrer" style={{ fontSize: '0.85rem', color: 'var(--accent-primary)', fontWeight: 600 }} title="Secondary GitHub">
-                      vishnu142
-                    </a>
+                    {import.meta.env.VITE_GITHUB_PRIMARY && (
+                      <a href={`https://github.com/${import.meta.env.VITE_GITHUB_PRIMARY}`} target="_blank" rel="noopener noreferrer" style={{ fontSize: '0.85rem', color: 'var(--accent-primary)', fontWeight: 600 }} title="Primary GitHub">
+                        {import.meta.env.VITE_GITHUB_PRIMARY}
+                      </a>
+                    )}
+                    {import.meta.env.VITE_GITHUB_SECONDARY && (
+                      <>
+                        <span style={{ color: 'var(--text-secondary)' }}>|</span>
+                        <a href={`https://github.com/${import.meta.env.VITE_GITHUB_SECONDARY}`} target="_blank" rel="noopener noreferrer" style={{ fontSize: '0.85rem', color: 'var(--accent-primary)', fontWeight: 600 }} title="Secondary GitHub">
+                          {import.meta.env.VITE_GITHUB_SECONDARY}
+                        </a>
+                      </>
+                    )}
                   </div>
                 </div>
                 <div className="stats-grid">
@@ -319,7 +328,7 @@ export default function App() {
                     <Code2 size={24} style={{ color: '#ffa116' }} />
                     <h3 style={{ fontSize: '1.25rem' }}>LeetCode</h3>
                   </div>
-                  <a href="https://leetcode.com/u/eqqPSQRrkF/" target="_blank" rel="noopener noreferrer" style={{ fontSize: '0.85rem', color: 'var(--accent-primary)', fontWeight: 600 }}>
+                  <a href={`https://leetcode.com/u/${import.meta.env.VITE_LEETCODE || 'leetcode_handle'}/`} target="_blank" rel="noopener noreferrer" style={{ fontSize: '0.85rem', color: 'var(--accent-primary)', fontWeight: 600 }}>
                     Profile
                   </a>
                 </div>
@@ -371,7 +380,7 @@ export default function App() {
                     <Activity size={24} style={{ color: '#3182ce' }} />
                     <h3 style={{ fontSize: '1.25rem' }}>Codeforces</h3>
                   </div>
-                  <a href="https://codeforces.com/profile/bvishnu_2509" target="_blank" rel="noopener noreferrer" style={{ fontSize: '0.85rem', color: 'var(--accent-primary)', fontWeight: 600 }}>
+                  <a href={`https://codeforces.com/profile/${import.meta.env.VITE_CODEFORCES || 'codeforces_handle'}`} target="_blank" rel="noopener noreferrer" style={{ fontSize: '0.85rem', color: 'var(--accent-primary)', fontWeight: 600 }}>
                     Profile
                   </a>
                 </div>
@@ -398,7 +407,7 @@ export default function App() {
                   <div className="stats-grid">
                     <div className="stat-box">
                       <div className="stat-box-title">User</div>
-                      <div className="stat-box-value" style={{ fontSize: '0.95rem', marginTop: '6px' }}>bvishnu_2509</div>
+                      <div className="stat-box-value" style={{ fontSize: '0.95rem', marginTop: '6px' }}>{import.meta.env.VITE_CODEFORCES || 'codeforces_handle'}</div>
                     </div>
                     <div className="stat-box">
                       <div className="stat-box-title">Rank</div>
@@ -419,7 +428,7 @@ export default function App() {
                     <Terminal size={24} style={{ color: '#a855f7' }} />
                     <h3 style={{ fontSize: '1.25rem' }}>CodeChef</h3>
                   </div>
-                  <a href="https://www.codechef.com/users/bvishnu_2509" target="_blank" rel="noopener noreferrer" style={{ fontSize: '0.85rem', color: 'var(--accent-primary)', fontWeight: 600 }}>
+                  <a href={`https://www.codechef.com/users/${import.meta.env.VITE_CODECHEF || 'codechef_handle'}`} target="_blank" rel="noopener noreferrer" style={{ fontSize: '0.85rem', color: 'var(--accent-primary)', fontWeight: 600 }}>
                     Profile
                   </a>
                 </div>

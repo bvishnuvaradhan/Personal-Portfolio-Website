@@ -83,7 +83,7 @@ export default function Contact() {
             </div>
             <div>
               <span className="contact-label">Email Me</span>
-              <div className="contact-value">vishnuvaradhan.boga@gmail.com</div>
+              <div className="contact-value">{import.meta.env.VITE_USER_EMAIL || 'contact@example.com'}</div>
             </div>
           </div>
 

@@ -37,7 +37,7 @@ export default function Navbar({
   return (
     <nav className="navbar glass">
       <div className="nav-logo gradient-text" onClick={() => navigateTo('home')}>
-        Boga.Dev
+        {import.meta.env.VITE_BRAND_NAME || 'Portfolio.Dev'}
       </div>
 
       {/* Nav Links */}
