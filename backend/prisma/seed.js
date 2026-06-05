@@ -131,6 +131,16 @@ async function main() {
       imageUrl: '/arduino_sensor_setup.png',
       featured: false,
       clicks: 42
+    },
+    {
+      title: 'HyFD – Hybrid Failure Detection System',
+      description: 'Engineered a hybrid failure detection system to ensure production machine learning reliability. Implemented real-time anomaly tracking, live monitoring dashboards, and precision alerts to capture silent failures and model drift in active ML pipelines.',
+      technologies: 'Python, Machine Learning, Anomaly Detection, MLOps, Failure Monitoring',
+      githubLink: 'https://lnkd.in/gRZPqCR8',
+      liveLink: 'https://lnkd.in/gkG9eZvV',
+      imageUrl: '/hyfd.png',
+      featured: true,
+      clicks: 110
     }
   ];
 
