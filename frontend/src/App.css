@@ -581,6 +581,27 @@ section {
   gap: 30px;
 }
 
+/* Featured Projects Horizontal Scroll */
+.featured-scroll-container {
+  display: flex;
+  overflow-x: auto;
+  gap: 30px;
+  padding: 10px 5px 30px;
+  scroll-behavior: smooth;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.featured-scroll-container::-webkit-scrollbar {
+  display: none; /* Hide scrollbar for Chrome, Safari and Opera */
+}
+
+.more-projects-card:hover {
+  border-color: var(--accent-secondary) !important;
+  box-shadow: var(--shadow-glass), var(--shadow-glow);
+  transform: translateY(-4px);
+}
+
 .project-card {
   overflow: hidden;
   display: flex;

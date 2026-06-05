@@ -215,7 +215,7 @@ export default function App() {
           
           <Timeline experiences={experiences} education={education} />
           
-          <Projects projects={projects} />
+          <Projects projects={projects} setView={setView} viewMode="featured" />
           
           <Certifications certifications={certifications} achievements={achievements} />
           
@@ -395,6 +395,12 @@ export default function App() {
           
           <Contact />
           
+          <Footer />
+        </div>
+      ) : currentView === 'projects' ? (
+        /* ALL PROJECTS VIEW */
+        <div style={{ marginTop: '70px', padding: '40px 5%' }}>
+          <Projects projects={projects} setView={setView} viewMode="all" />
           <Footer />
         </div>
       ) : (
