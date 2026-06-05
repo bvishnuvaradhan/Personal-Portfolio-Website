@@ -35,13 +35,13 @@ async function main() {
   await prisma.analytics.upsert({
     where: { key: 'visitors' },
     update: {},
-    create: { key: 'visitors', count: 1456 }
+    create: { key: 'visitors', count: 0 }
   });
 
   await prisma.analytics.upsert({
     where: { key: 'resume_downloads' },
     update: {},
-    create: { key: 'resume_downloads', count: 23 }
+    create: { key: 'resume_downloads', count: 0 }
   });
   console.log('Analytics keys initialized.');
 
@@ -100,7 +100,7 @@ async function main() {
       liveLink: 'https://cipher-nexus-zeta.vercel.app',
       imageUrl: '/cybernexus.png',
       featured: true,
-      clicks: 120
+      clicks: 0
     },
     {
       title: 'Aletheia Gate – LLM Hallucination Detection & Verification System',
@@ -110,7 +110,7 @@ async function main() {
       liveLink: 'https://aletheia-gate-teal-panda.reflex.run',
       imageUrl: '/aletheiagate.png',
       featured: true,
-      clicks: 95
+      clicks: 0
     },
     {
       title: 'MongoArchitect – AI-Based MongoDB Schema Design System',
@@ -120,7 +120,7 @@ async function main() {
       liveLink: 'https://mongoarchitect-ai.vercel.app',
       imageUrl: '/mongoarchitect.png',
       featured: false,
-      clicks: 88
+      clicks: 0
     },
     {
       title: 'Automated Wild Animal Intrusion Detection System (IoT)',
@@ -130,7 +130,7 @@ async function main() {
       liveLink: '',
       imageUrl: '/arduino_sensor_setup.png',
       featured: false,
-      clicks: 42
+      clicks: 0
     },
     {
       title: 'HyFD – Hybrid Failure Detection System',
@@ -140,7 +140,7 @@ async function main() {
       liveLink: 'https://lnkd.in/gkG9eZvV',
       imageUrl: '/hyfd.png',
       featured: true,
-      clicks: 110
+      clicks: 0
     },
     {
       title: 'Evenza – Advanced Event Management System',
@@ -150,7 +150,7 @@ async function main() {
       liveLink: 'https://github.com/Vishnuvaradhan142/Evenza-Frontend',
       imageUrl: '/evenza.png',
       featured: false,
-      clicks: 95
+      clicks: 0
     },
     {
       title: 'Echoes of the Temple – Static Web Puzzle Game',
@@ -160,7 +160,7 @@ async function main() {
       liveLink: 'https://echoes-of-the-temple.onrender.com/',
       imageUrl: '/temple.jpg',
       featured: false,
-      clicks: 65
+      clicks: 0
     },
     {
       title: 'CivicWatch – Smart City Grievance Redressal System',
@@ -170,7 +170,7 @@ async function main() {
       liveLink: 'https://civic-watch-xi.vercel.app/',
       imageUrl: '/civicwatch.png',
       featured: true,
-      clicks: 105
+      clicks: 0
     }
   ];
 
