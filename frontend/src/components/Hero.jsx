@@ -83,12 +83,9 @@ export default function Hero() {
         transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' }}
       >
         <div className="hero-profile-container">
-          {/* We will seed a default profile photo or an abstract coding image */}
-          <img 
-            src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&h=400&q=80" 
-            alt="Boga Vishnuvaradhan" 
-            className="hero-profile-image"
-          />
+          <div className="hero-profile-image" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--bg-secondary)', color: 'var(--text-primary)', fontSize: '5rem', fontWeight: 800, userSelect: 'none', border: '4px solid var(--bg-primary)', width: '100%', height: '100%', borderRadius: '50%' }}>
+            BV
+          </div>
         </div>
       </motion.div>
     </section>
