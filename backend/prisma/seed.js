@@ -118,7 +118,7 @@ async function main() {
       technologies: 'Python, FastAPI, MongoDB, React, LLM APIs',
       githubLink: 'https://github.com/bvishnuvaradhan/mongoarchitect-ai',
       liveLink: 'https://mongoarchitect-ai.vercel.app',
-      imageUrl: 'https://images.unsplash.com/photo-1544383835-bda2bc66a55d?auto=format&fit=crop&w=800&q=80',
+      imageUrl: '/mongoarchitect.png',
       featured: true,
       clicks: 88
     },
@@ -128,7 +128,7 @@ async function main() {
       technologies: 'IoT Sensors, Embedded Systems',
       githubLink: '',
       liveLink: '',
-      imageUrl: 'https://images.unsplash.com/photo-1504198453319-5ce911bafcde?auto=format&fit=crop&w=800&q=80',
+      imageUrl: '/arduino_sensor_setup.png',
       featured: false,
       clicks: 42
     }
