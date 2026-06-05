@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, ArrowRight } from 'lucide-react';
+import { Search, ArrowRight, X, ExternalLink, Github } from 'lucide-react';
 import ProjectCard from './ProjectCard';
 
 export default function Projects({ projects = [], setView, viewMode = 'featured' }) {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedTag, setSelectedTag] = useState('All');
   const [filteredProjects, setFilteredProjects] = useState([]);
+  const [selectedProject, setSelectedProject] = useState(null);
 
   const displayableProjects = viewMode === 'featured' 
     ? projects.filter(p => p.featured)
@@ -59,6 +60,7 @@ export default function Projects({ projects = [], setView, viewMode = 'featured'
               <ProjectCard 
                 project={project} 
                 onTagClick={null} /* disable filtering trigger on home page */
+                onCardClick={setSelectedProject}
               />
             </div>
           ))}
@@ -140,6 +142,7 @@ export default function Projects({ projects = [], setView, viewMode = 'featured'
                 key={project.id} 
                 project={project} 
                 onTagClick={(tag) => setSelectedTag(tag)}
+                onCardClick={setSelectedProject}
               />
             ))
           ) : (
@@ -154,6 +157,169 @@ export default function Projects({ projects = [], setView, viewMode = 'featured'
           )}
         </AnimatePresence>
       </motion.div>
+
+      {/* Premium Project Details Modal */}
+      <AnimatePresence>
+        {selectedProject && (
+          <div 
+            className="modal-overlay" 
+            onClick={() => setSelectedProject(null)}
+            style={{ 
+              position: 'fixed',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              background: 'rgba(0, 0, 0, 0.75)',
+              backdropFilter: 'blur(12px)',
+              WebkitBackdropFilter: 'blur(12px)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              zIndex: 10000,
+              cursor: 'pointer'
+            }}
+          >
+            <motion.div 
+              className="modal-content glass"
+              onClick={(e) => e.stopPropagation()}
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 20 }}
+              transition={{ duration: 0.3, ease: 'easeOut' }}
+              style={{
+                maxWidth: '650px',
+                width: '90%',
+                maxHeight: '90vh',
+                overflowY: 'auto',
+                position: 'relative',
+                padding: '30px',
+                border: '1px solid var(--border-glass-hover)',
+                boxShadow: 'var(--shadow-glass), var(--shadow-glow)',
+                cursor: 'default',
+                borderRadius: 'var(--border-radius-md)'
+              }}
+            >
+              {/* Header Close button */}
+              <button 
+                className="theme-toggle" 
+                onClick={() => setSelectedProject(null)}
+                style={{
+                  position: 'absolute',
+                  top: '20px',
+                  right: '20px',
+                  zIndex: 10,
+                  background: 'none',
+                  border: 'none',
+                  color: 'var(--text-primary)',
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  width: '36px',
+                  height: '36px',
+                  borderRadius: '50%',
+                  border: '1px solid var(--border-glass)',
+                  transition: 'var(--transition-smooth)'
+                }}
+              >
+                <X size={18} />
+              </button>
+
+              {/* Project Title */}
+              <h3 
+                className="gradient-text" 
+                style={{ 
+                  fontSize: '1.8rem', 
+                  marginBottom: '20px', 
+                  paddingRight: '40px',
+                  fontFamily: 'var(--font-heading)'
+                }}
+              >
+                {selectedProject.title}
+              </h3>
+
+              {/* Project Image */}
+              <div 
+                className="project-image-wrapper" 
+                style={{ 
+                  height: '300px', 
+                  borderRadius: 'var(--border-radius-md)', 
+                  marginBottom: '25px',
+                  backgroundColor: 'var(--bg-primary)',
+                  overflow: 'hidden',
+                  position: 'relative',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  borderBottom: '1px solid var(--border-glass)'
+                }}
+              >
+                <img 
+                  src={selectedProject.imageUrl || 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=800&q=80'} 
+                  alt={selectedProject.title} 
+                  className="project-image"
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'contain'
+                  }}
+                />
+              </div>
+
+              {/* Description */}
+              <h4 style={{ fontSize: '1.1rem', marginBottom: '10px', color: 'var(--text-primary)' }}>Project Description</h4>
+              <p 
+                style={{ 
+                  color: 'var(--text-secondary)', 
+                  lineHeight: '1.7', 
+                  fontSize: '0.95rem', 
+                  marginBottom: '25px',
+                  whiteSpace: 'pre-wrap'
+                }}
+              >
+                {selectedProject.description}
+              </p>
+
+              {/* Technologies */}
+              <h4 style={{ fontSize: '1.1rem', marginBottom: '12px', color: 'var(--text-primary)' }}>Technologies Used</h4>
+              <div className="project-tags" style={{ marginBottom: '30px' }}>
+                {selectedProject.technologies && selectedProject.technologies.split(',').map((tag, idx) => (
+                  <span key={idx} className="project-tag" style={{ padding: '6px 12px', fontSize: '0.8rem' }}>
+                    #{tag.trim()}
+                  </span>
+                ))}
+              </div>
+
+              {/* Links */}
+              <div className="project-links">
+                {selectedProject.githubLink && (
+                  <a 
+                    href={selectedProject.githubLink} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="btn btn-secondary project-link" 
+                    style={{ padding: '10px 24px', fontSize: '0.9rem' }}
+                  >
+                    <Github size={18} /> Source Code
+                  </a>
+                )}
+                {selectedProject.liveLink && (
+                  <a 
+                    href={selectedProject.liveLink} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="btn btn-primary project-link" 
+                    style={{ padding: '10px 24px', fontSize: '0.9rem' }}
+                  >
+                    <ExternalLink size={18} /> Live Demo
+                  </a>
+                )}
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }

@@ -3,13 +3,16 @@ import { motion } from 'framer-motion';
 import { Github, ExternalLink } from 'lucide-react';
 import { api } from '../utils/api';
 
-export default function ProjectCard({ project, onTagClick }) {
+export default function ProjectCard({ project, onTagClick, onCardClick }) {
   // Format technologies list from comma-separated string to array
   const tags = project.technologies 
     ? project.technologies.split(',').map(tag => tag.trim()) 
     : [];
 
-  const handleLinkClick = async () => {
+  const visibleTags = tags.slice(0, 4);
+
+  const handleLinkClick = async (e) => {
+    e.stopPropagation();
     try {
       // Increment clicks analytics counter for the project
       await api.projects.trackClick(project.id);
@@ -26,6 +29,8 @@ export default function ProjectCard({ project, onTagClick }) {
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 0.9 }}
       transition={{ duration: 0.4 }}
+      onClick={() => onCardClick && onCardClick(project)}
+      style={{ cursor: 'pointer' }}
     >
       <div className="project-image-wrapper">
         <img 
@@ -41,24 +46,33 @@ export default function ProjectCard({ project, onTagClick }) {
 
       <div className="project-content">
         <h3 className="project-title">{project.title}</h3>
-        <p className="project-desc">{project.description}</p>
         
-        {/* Technologies/Tags */}
+        {/* Technologies/Tags (limited to 4 on card) */}
         <div className="project-tags">
-          {tags.map((tag, idx) => (
+          {visibleTags.map((tag, idx) => (
             <span 
               key={idx} 
               className="project-tag"
-              onClick={() => onTagClick && onTagClick(tag)}
+              onClick={(e) => {
+                if (onTagClick) {
+                  e.stopPropagation();
+                  onTagClick(tag);
+                }
+              }}
               style={{ cursor: onTagClick ? 'pointer' : 'default' }}
             >
               #{tag}
             </span>
           ))}
+          {tags.length > 4 && (
+            <span className="project-tag" style={{ opacity: 0.7 }}>
+              +{tags.length - 4} more
+            </span>
+          )}
         </div>
 
         {/* Project Links */}
-        <div className="project-links">
+        <div className="project-links" style={{ marginTop: 'auto' }}>
           {project.githubLink && (
             <a 
               href={project.githubLink} 
